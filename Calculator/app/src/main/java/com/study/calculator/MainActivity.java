@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickOperation(View view) {
-        if (isOneVariable) {
+        if (isOneVariable && !variable1.isEmpty()) {
             Button btn = (Button) view;
             operation = btn.getText().toString();
             setTextResult(operation, true);
@@ -96,6 +96,9 @@ public class MainActivity extends AppCompatActivity {
 
     private String result() {
         try {
+            if(isOneVariable){
+                return variable1;
+            }
             float v1 = Float.parseFloat(variable1);
             float v2 = Float.parseFloat(variable2);
             float result = 0;

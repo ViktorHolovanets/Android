@@ -39,13 +39,14 @@
                 android:text="C"
                 android:backgroundTint="@color/white"
                 android:textColor="@color/black"
-                android:onClick="clearResult"/>
+                android:onClick="clearResult"
+                />
 
             <Button
                 android:text="+/-"
                 android:backgroundTint="@color/white"
                 android:textColor="@color/black"
-                android:onClick="onClickNumber"/>
+                />
 
             <Button
                 android:text="%"
