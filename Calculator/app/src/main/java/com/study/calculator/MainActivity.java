@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import android.widget.GridLayout;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,26 +23,29 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_result);
 
 
-//        GridLayout gridLayout = findViewById(R.id.ButtonPanel);
-//
-//        int buttonCount = gridLayout.getChildCount();
-//        for (int j = 0; j < buttonCount; j++) {
-//            View button = gridLayout.getChildAt(j);
-//            if (button instanceof Button) {
-//                Button btn = (Button) button;
-//                GridLayout.LayoutParams params = (GridLayout.LayoutParams) btn.getLayoutParams();
-//                GridLayout.Spec rowSpec = GridLayout.spec(GridLayout.UNDEFINED, GridLayout.FILL, 1f);
-//                GridLayout.Spec colSpec = GridLayout.spec(GridLayout.UNDEFINED, 1, 1f);
-//                params.rowSpec = rowSpec;
-//                params.columnSpec = colSpec;
-//
-//                if (btn.getText().toString().equals("0")) {
-//                    params.columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 2);
-//                    params.width = GridLayout.LayoutParams.WRAP_CONTENT; // Додатковий рядок для розтягування кнопки "0"
-//                }
-//                btn.setLayoutParams(params);
-//            }
-//        }
+        GridLayout gridLayout = findViewById(R.id.ButtonPanel);
+
+        int buttonCount = gridLayout.getChildCount();
+        for (int j = 0; j < buttonCount; j++) {
+            View button = gridLayout.getChildAt(j);
+            if (button instanceof Button) {
+                Button btn = (Button) button;
+                GridLayout.LayoutParams params = (GridLayout.LayoutParams) btn.getLayoutParams();
+                GridLayout.Spec rowSpec = GridLayout.spec(GridLayout.UNDEFINED, GridLayout.FILL, 1f);
+                GridLayout.Spec colSpec;
+                if (btn.getText().toString().equals("0")) {
+                    params.columnSpec = GridLayout.spec(0, 2);
+                    params.width = GridLayout.LayoutParams.WRAP_CONTENT;
+                    colSpec = GridLayout.spec(GridLayout.UNDEFINED, 2, 1f);
+                } else
+                    colSpec = GridLayout.spec(GridLayout.UNDEFINED, 1, 1f);
+                params.rowSpec = rowSpec;
+                params.columnSpec = colSpec;
+                btn.setTextSize(25);
+
+                btn.setLayoutParams(params);
+            }
+        }
     }
 
     public void onClickNumber(View view) {
@@ -56,12 +60,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickOperation(View view) {
-       if(isOneVariable){
-           Button btn = (Button) view;
-           operation = btn.getText().toString();
-           setTextResult(operation, true);
-           isOneVariable = !isOneVariable;
-       }
+        if (isOneVariable) {
+            Button btn = (Button) view;
+            operation = btn.getText().toString();
+            setTextResult(operation, true);
+            isOneVariable = !isOneVariable;
+        }
     }
 
     private void setTextResult(String text, Boolean isAdd) {
@@ -113,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
                     result = (v1 / 100) * v2;
                     break;
             }
-            variable1=String.valueOf(result);
+            variable1 = String.valueOf(result);
             return variable1;
         } catch (Exception e) {
         }
