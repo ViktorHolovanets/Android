@@ -34,9 +34,7 @@ public class MainActivity extends AppCompatActivity {
                 GridLayout.Spec rowSpec = GridLayout.spec(GridLayout.UNDEFINED, GridLayout.FILL, 1f);
                 GridLayout.Spec colSpec;
                 if (btn.getText().toString().equals("0")) {
-                    params.columnSpec = GridLayout.spec(0, 2);
-                    params.width = GridLayout.LayoutParams.WRAP_CONTENT;
-                    colSpec = GridLayout.spec(GridLayout.UNDEFINED, 2, 1f);
+                    colSpec = GridLayout.spec(GridLayout.UNDEFINED, 2, 2f);
                 } else
                     colSpec = GridLayout.spec(GridLayout.UNDEFINED, 1, 1f);
                 params.rowSpec = rowSpec;
