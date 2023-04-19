@@ -3,6 +3,7 @@ package com.study.calculator;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,12 +11,11 @@ import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.TextView;
 
+import com.study.calculator.model.ParamsCalculatorModel;
+
 public class MainActivity extends AppCompatActivity {
 
-    private String variable1 = "";
-    private String operation;
-    private String variable2 = "";
-    private Boolean isOneVariable = true;
+    private ParamsCalculatorModel paramsCalculatorModel = new ParamsCalculatorModel();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,11 +32,7 @@ public class MainActivity extends AppCompatActivity {
                 Button btn = (Button) button;
                 GridLayout.LayoutParams params = (GridLayout.LayoutParams) btn.getLayoutParams();
                 GridLayout.Spec rowSpec = GridLayout.spec(GridLayout.UNDEFINED, GridLayout.FILL, 1f);
-                GridLayout.Spec colSpec;
-                if (btn.getText().toString().equals("0")) {
-                    colSpec = GridLayout.spec(GridLayout.UNDEFINED, 2, 2f);
-                } else
-                    colSpec = GridLayout.spec(GridLayout.UNDEFINED, 1, 1f);
+                GridLayout.Spec colSpec = GridLayout.spec(GridLayout.UNDEFINED, 1, 1f);
                 params.rowSpec = rowSpec;
                 params.columnSpec = colSpec;
                 btn.setTextSize(25);
@@ -50,19 +46,19 @@ public class MainActivity extends AppCompatActivity {
         Button btn = (Button) view;
         String num = btn.getText().toString();
         setTextResult(num, true);
-        if (isOneVariable) {
-            variable1 += num;
+        if (paramsCalculatorModel.getOneVariable()) {
+            paramsCalculatorModel.setVariable1(paramsCalculatorModel.getVariable1() + num);
         } else {
-            variable2 += num;
+            paramsCalculatorModel.setVariable2(paramsCalculatorModel.getVariable2() + num);
         }
     }
 
     public void onClickOperation(View view) {
-        if (isOneVariable && !variable1.isEmpty()) {
+        if (paramsCalculatorModel.getOneVariable() && !paramsCalculatorModel.getVariable1().isEmpty()) {
             Button btn = (Button) view;
-            operation = btn.getText().toString();
-            setTextResult(operation, true);
-            isOneVariable = !isOneVariable;
+            paramsCalculatorModel.setOperation(btn.getText().toString());
+            setTextResult(paramsCalculatorModel.getOperation(), true);
+            paramsCalculatorModel.setOneVariable(!paramsCalculatorModel.getOneVariable());
         }
     }
 
@@ -75,32 +71,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void clearResult(View view) {
-        variable1 = "";
-        variable2 = "";
-        operation = "";
-        isOneVariable = true;
+        paramsCalculatorModel.clear();
         TextView textView = findViewById(R.id.ResultPanel);
         textView.setText("");
     }
 
     public void onClickResult(View view) {
         setTextResult(result(), false);
-        variable2 = "";
-        operation = "";
-        isOneVariable = true;
+        paramsCalculatorModel.clear1();
         TextView textView = findViewById(R.id.ResultPanel);
 
     }
 
     private String result() {
         try {
-            if(isOneVariable){
-                return variable1;
+            if (paramsCalculatorModel.getOneVariable()) {
+                return paramsCalculatorModel.getVariable1();
             }
-            float v1 = Float.parseFloat(variable1);
-            float v2 = Float.parseFloat(variable2);
+            float v1 = Float.parseFloat(paramsCalculatorModel.getVariable1());
+            float v2 = Float.parseFloat(paramsCalculatorModel.getVariable2());
             float result = 0;
-            switch (operation) {
+            switch (paramsCalculatorModel.getOperation()) {
                 case "+":
                     result = v1 + v2;
                     break;
@@ -118,11 +109,16 @@ public class MainActivity extends AppCompatActivity {
                     result = (v1 / 100) * v2;
                     break;
             }
-            variable1 = String.valueOf(result);
-            return variable1;
+            paramsCalculatorModel.setVariable1(String.valueOf(result));
+            return paramsCalculatorModel.getVariable1();
         } catch (Exception e) {
         }
         return "";
     }
-}
 
+    public void onClickNav(View view) {
+        Intent intent = new Intent(this, CalcuratorProgram.class);
+        intent.putExtra(ParamsCalculatorModel.class.getSimpleName(), paramsCalculatorModel);
+        startActivity(intent);
+    }
+}

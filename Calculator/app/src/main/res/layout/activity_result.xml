@@ -140,6 +140,11 @@
                 android:text="="
                 android:backgroundTint="@color/red"
                 android:onClick="onClickResult"/>
+            <Button
+                android:textColor="@color/white"
+                android:text="NEXT"
+                android:backgroundTint="@color/black"
+                android:onClick="onClickNav"/>
         </GridLayout>
     </LinearLayout>
 </LinearLayout>
