@@ -1,7 +1,9 @@
 package com.study.calculator;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -41,9 +43,9 @@ public class CalcuratorProgram extends AppCompatActivity {
         GridLayout.Spec colSpec = GridLayout.spec(GridLayout.UNDEFINED, 4, 1f);
         txtParams.rowSpec = rowSpec;
         txtParams.columnSpec = colSpec;
-        textView.setTextColor(getResources().getColor(R.color.white));
+        textView.setTextColor(ContextCompat.getColor(this, R.color.white));
         textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);
-        textView.setBackgroundColor(getResources().getColor(R.color.black));
+        textView.setBackgroundColor(ContextCompat.getColor(this,R.color.black));
         textView.setGravity(Gravity.BOTTOM | Gravity.RIGHT);
         textView.setPadding(5, 5, 5, 5);
         textView.setLayoutParams(txtParams);
@@ -129,6 +131,7 @@ public class CalcuratorProgram extends AppCompatActivity {
         operation = "";
         isOneVariable = true;
     }
+
     private String result() {
         try {
             if (isOneVariable) {
