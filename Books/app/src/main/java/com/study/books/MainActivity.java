@@ -89,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
                 (ConstraintLayout.LayoutParams.MATCH_PARENT , ConstraintLayout.LayoutParams.MATCH_PARENT);
         layoutParams.leftToLeft = ConstraintLayout.LayoutParams.PARENT_ID;
         layoutParams.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
+        imageView.setBackgroundResource(R.color.transparent_gray);
         imageView.setLayoutParams(layoutParams);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,6 +99,5 @@ public class MainActivity extends AppCompatActivity {
         });
         constraintLayout.addView(imageView);
         setContentView(constraintLayout);
-
     }
 }

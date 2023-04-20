@@ -4,4 +4,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="blue">#73C7ED</color>
     <color name="success">#9AF4A9</color>
+    <color name="transparent_gray">#7F0E0E0E</color>
 </resources>
