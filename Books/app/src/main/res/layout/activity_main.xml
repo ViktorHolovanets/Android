@@ -5,26 +5,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/layout_content"
-    tools:context=".MainActivity">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical" >
+    tools:context=".MainActivity"
+    android:background="@drawable/background_gradient">
 
-        <Button
-            android:id="@+id/btn_update"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:text="🔁"
-            android:onClick="onClickUpdateImages"
-            android:backgroundTint="@color/success"
-            />
+    <Button
+        android:id="@+id/dogs"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:text="Dogs"
+        android:textSize="25dp"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/books"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:onClick="onClick"/>
 
-        <ListView
-            android:id="@+id/list_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
-    </LinearLayout>
+    <Button
+        android:id="@+id/books"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="Books"
+        android:textSize="25dp"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dogs"
+        android:onClick="onClick"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
