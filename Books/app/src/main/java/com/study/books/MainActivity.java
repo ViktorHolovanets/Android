@@ -37,36 +37,9 @@ public class MainActivity extends AppCompatActivity {
         dogsList = findViewById(R.id.list_view);
         stateAdapter = new ImageAdapter(this, R.layout.list_image, states);
         dogsList.setAdapter(stateAdapter);
-        dogsList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-            @Override
-            public void onItemClick(AdapterView<?> parent, View v, int position, long id)
-            {
-                String selectedItem = states.get(position).getImgResource();
-                ConstraintLayout constraintLayout=(ConstraintLayout)findViewById(R.id.layout_content);
-                ImageView imageView = new ImageView(constraintLayout.getContext());
-                Glide.with(constraintLayout).load(selectedItem).into(imageView);
-
-                imageView.setScaleType(ImageView.ScaleType.CENTER);
-
-                ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams
-                        (ConstraintLayout.LayoutParams.MATCH_PARENT , ConstraintLayout.LayoutParams.MATCH_PARENT);
-                layoutParams.leftToLeft = ConstraintLayout.LayoutParams.PARENT_ID;
-                layoutParams.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
-                imageView.setLayoutParams(layoutParams);
-                imageView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        constraintLayout.removeView(imageView);
-                    }
-                });
-                constraintLayout.addView(imageView);
-                setContentView(constraintLayout);
-
-            }
-        });
+        dogsList.setOnItemClickListener(this::onItemClickSelectItem);
     }
     private void setInitialData(){
-
         for (int i=0; i<10;i++){
             loadDogImage();
         }
@@ -93,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
                 error -> {
 
                     Toast.makeText(MainActivity.this, "Some error occurred! Cannot fetch dog image", Toast.LENGTH_LONG).show();
-
                     Log.e("MainActivity", "loadDogImage error: " + error.getLocalizedMessage());
                 }
         );
@@ -104,5 +76,28 @@ public class MainActivity extends AppCompatActivity {
         states.clear();
         setInitialData();
     }
+    public void onItemClickSelectItem(AdapterView<?> parent, View v, int position, long id)
+    {
+        String selectedItem = states.get(position).getImgResource();
+        ConstraintLayout constraintLayout=(ConstraintLayout)findViewById(R.id.layout_content);
+        ImageView imageView = new ImageView(constraintLayout.getContext());
+        Glide.with(this).load(selectedItem).into(imageView);
 
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+
+        ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams
+                (ConstraintLayout.LayoutParams.MATCH_PARENT , ConstraintLayout.LayoutParams.MATCH_PARENT);
+        layoutParams.leftToLeft = ConstraintLayout.LayoutParams.PARENT_ID;
+        layoutParams.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
+        imageView.setLayoutParams(layoutParams);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                constraintLayout.removeView(imageView);
+            }
+        });
+        constraintLayout.addView(imageView);
+        setContentView(constraintLayout);
+
+    }
 }
