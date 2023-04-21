@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="genres">
+        <item>romance</item>
+        <item>poetry</item>
+        <item>fantasy</item>
+    </string-array>
+</resources>

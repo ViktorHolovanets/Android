@@ -13,7 +13,7 @@ import android.widget.ListView;
 
 import com.bumptech.glide.Glide;
 import com.study.books.adapter.ImageAdapter;
-import com.study.books.model.ImageSourseModel;
+import com.study.books.model.ImageSourceModel;
 import com.study.books.services.httpservice.VolleyService;
 
 import org.json.JSONException;
@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 public class Dogs extends AppCompatActivity {
 
-    ArrayList<ImageSourseModel> states = new ArrayList<ImageSourseModel>();
+    ArrayList<ImageSourceModel> states = new ArrayList<ImageSourceModel>();
     ImageAdapter stateAdapter;
     ListView dogsList;
     VolleyService volleyService;
@@ -49,7 +49,7 @@ public class Dogs extends AppCompatActivity {
         String url = "https://dog.ceo/api/breeds/image/random";
         volleyService.loadGet(url, imageUrl -> {
             try {
-                states.add(new ImageSourseModel(imageUrl.getString("message")));
+                states.add(new ImageSourceModel(imageUrl.getString("message")));
                 stateAdapter.notifyDataSetChanged();
             } catch (JSONException e) {
                 throw new RuntimeException(e);

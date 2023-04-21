@@ -11,17 +11,18 @@ import androidx.annotation.NonNull;
 
 import com.bumptech.glide.Glide;
 import com.study.books.R;
-import com.study.books.model.ImageSourseModel;
+import com.study.books.model.ImageSourceModel;
+
 
 import java.util.List;
 
-public class ImageAdapter extends ArrayAdapter<ImageSourseModel> {
+public class ImageAdapter extends ArrayAdapter<ImageSourceModel> {
 
     private LayoutInflater inflater;
     private int layout;
-    private List<ImageSourseModel> images;
+    private List<ImageSourceModel> images;
 
-    public ImageAdapter(@NonNull Context context, int resource, List<ImageSourseModel> images) {
+    public ImageAdapter(@NonNull Context context, int resource, List<ImageSourceModel> images) {
         super(context, resource, images);
         this.images = images;
         this.layout = resource;
@@ -42,7 +43,7 @@ public class ImageAdapter extends ArrayAdapter<ImageSourseModel> {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        ImageSourseModel source = images.get(position);
+        ImageSourceModel source = images.get(position);
         Glide.with(getContext()).load(source.getImgResource()).into(viewHolder.flagView);
 
         return convertView;

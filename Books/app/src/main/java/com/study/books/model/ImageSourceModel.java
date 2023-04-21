@@ -1,6 +1,6 @@
 package com.study.books.model;
 
-public class ImageSourseModel {
+public class ImageSourceModel {
     private String imgResource;
 
     public String getImgResource() {
@@ -10,7 +10,7 @@ public class ImageSourseModel {
     public void setFlagResource(String img) {
         this.imgResource = img;
     }
-    public ImageSourseModel(String img){
+    public ImageSourceModel(String img){
         this.imgResource=img;
     }
 }
