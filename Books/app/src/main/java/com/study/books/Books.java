@@ -36,7 +36,7 @@ public class Books extends AppCompatActivity {
         volleyService = new VolleyService(this);
         Spinner spinner = findViewById(R.id.spinner_genres);
         spinner.setAdapter(new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.genres)));
+                android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.genres)));
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -68,5 +68,7 @@ public class Books extends AppCompatActivity {
             }
         });
     }
-
+    public void onClickBack(View view) {
+        finish();
+    }
 }

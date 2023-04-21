@@ -85,5 +85,7 @@ public class Dogs extends AppCompatActivity {
         constraintLayout.addView(imageView);
         setContentView(constraintLayout);
     }
-
+    public void onClickBack(View view) {
+        finish();
+    }
 }

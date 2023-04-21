@@ -13,7 +13,6 @@
       android:id="@+id/spinner_genres"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_weight="1"
       android:background="@color/success"
       />
 
@@ -30,6 +29,5 @@
       android:layout_height="wrap_content"
       android:onClick="onClickBack"
       android:text="BACK"
-      android:layout_weight="1"
       />
   </LinearLayout>
