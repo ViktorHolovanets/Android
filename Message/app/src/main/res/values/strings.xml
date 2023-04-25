@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Message</string>
+    <string name="edit_title">Enter notification message</string>
+</resources>

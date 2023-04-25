@@ -6,6 +6,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -19,6 +20,7 @@ import com.study.books.services.httpservice.VolleyService;
 import org.json.JSONException;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Dogs extends AppCompatActivity {
 
@@ -66,6 +68,7 @@ public class Dogs extends AppCompatActivity {
         String selectedItem = states.get(position).getImgResource();
         ConstraintLayout constraintLayout=(ConstraintLayout)findViewById(R.id.layout_content);
         ImageView imageView = new ImageView(constraintLayout.getContext());
+
         Glide.with(this).load(selectedItem).into(imageView);
 
         imageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -79,7 +82,12 @@ public class Dogs extends AppCompatActivity {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                constraintLayout.removeView(imageView);
+                try {
+                    constraintLayout.removeView(imageView);
+                    Log.d("Remove","Remove");
+                    ListView main=findViewById(R.id.list_view);
+                    main.requestFocus();
+                }catch (Exception ex){}
             }
         });
         constraintLayout.addView(imageView);

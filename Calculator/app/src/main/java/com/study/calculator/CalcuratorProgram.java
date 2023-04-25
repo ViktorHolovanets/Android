@@ -158,10 +158,17 @@ public class CalcuratorProgram extends AppCompatActivity {
                     result = (v1 / 100) * v2;
                     break;
             }
-            variable1 = String.valueOf(result);
+            variable1 = this.formatDouble(result);
             return variable1;
         } catch (Exception e) {
         }
         return "";
+    }
+    public  String formatDouble(double num) {
+        if (num == (long) num) {
+            return String.format("%d", (long) num);
+        } else {
+            return String.format("%s", num);
+        }
     }
 }
